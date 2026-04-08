@@ -1,3 +1,5 @@
+// test comment made from the dev branch
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
@@ -9,7 +11,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [tempName, setTempName] = useState('');
   const [tempDesc, setTempDesc] = useState('');
-  
+
   // States for inline editing
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState('');
@@ -37,7 +39,7 @@ function App() {
   const handleCreate = async () => {
     const name = tempName || `Item ${Math.floor(Math.random() * 1000)}`;
     const description = tempDesc || `A generic item description ${new Date().toLocaleTimeString()}`;
-    
+
     try {
       await axios.post(API_URL, { name, description });
       fetchItems();
@@ -69,7 +71,7 @@ function App() {
       alert("Name is required!");
       return;
     }
-    
+
     try {
       await axios.put(`${API_URL}/${id}`, { name: editName, description: editDesc });
       fetchItems();
@@ -103,16 +105,16 @@ function App() {
   return (
     <div className="app-container">
       <h1>React CRUD Ops</h1>
-      
+
       <div className="controls">
-        <input 
-          placeholder="New Item Name (optional)" 
-          value={tempName} 
+        <input
+          placeholder="New Item Name (optional)"
+          value={tempName}
           onChange={e => setTempName(e.target.value)}
         />
-        <input 
-          placeholder="New Item Description (optional)" 
-          value={tempDesc} 
+        <input
+          placeholder="New Item Description (optional)"
+          value={tempDesc}
           onChange={e => setTempDesc(e.target.value)}
         />
       </div>
@@ -134,19 +136,19 @@ function App() {
             <div key={item.id} className="item-card">
               {editingId === item.id ? (
                 <div className="item-content" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', width: '100%' }}>
-                  <input 
-                    value={editName} 
-                    onChange={e => setEditName(e.target.value)} 
+                  <input
+                    value={editName}
+                    onChange={e => setEditName(e.target.value)}
                     placeholder="Item Name"
                   />
-                  <input 
-                    value={editDesc} 
-                    onChange={e => setEditDesc(e.target.value)} 
+                  <input
+                    value={editDesc}
+                    onChange={e => setEditDesc(e.target.value)}
                     placeholder="Item Description"
                   />
                   <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem' }}>
-                    <button className="btn-secondary" style={{padding: '0.25rem 0.5rem', fontSize: '0.8rem'}} onClick={() => saveEdit(item.id)}>Save</button>
-                    <button className="btn-danger" style={{padding: '0.25rem 0.5rem', fontSize: '0.8rem'}} onClick={cancelEdit}>Cancel</button>
+                    <button className="btn-secondary" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }} onClick={() => saveEdit(item.id)}>Save</button>
+                    <button className="btn-danger" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }} onClick={cancelEdit}>Cancel</button>
                   </div>
                 </div>
               ) : (
@@ -156,8 +158,8 @@ function App() {
                     <p>{item.description}</p>
                   </div>
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <button className="btn-warning" style={{padding: '0.25rem 0.5rem', fontSize: '0.8rem'}} onClick={() => startEdit(item)}>Edit</button>
-                    <button className="btn-danger" style={{padding: '0.25rem 0.5rem', fontSize: '0.8rem'}} onClick={() => handleDelete(item.id)}>X</button>
+                    <button className="btn-warning" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }} onClick={() => startEdit(item)}>Edit</button>
+                    <button className="btn-danger" style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }} onClick={() => handleDelete(item.id)}>X</button>
                   </div>
                 </>
               )}
