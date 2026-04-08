@@ -1,13 +1,12 @@
 // test comment made from the dev branch
+// trying a second commit here
 
-// Added 3rd one
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 
 const API_URL = 'http://localhost:3001/api/items';
 
-// Added 4th one
 function App() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
